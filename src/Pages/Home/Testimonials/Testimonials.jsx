@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { Rating } from "@smastrom/react-rating";
 import '@smastrom/react-rating/style.css'
 
+import { FaQuoteLeft } from "react-icons/fa";
 const Testimonials = () => {
     const [reviews, setReviews] = useState([]);
 
@@ -20,7 +21,7 @@ const Testimonials = () => {
             .then(data => setReviews(data))
     }, [])
     return (
-        <section className="my-20">
+        <section className="my-20 max-w-5xl mx-auto">
             <SectionTitle
                 heading={"Testimonials"}
                 subHeading={"What Our Client Say"}
@@ -38,8 +39,11 @@ const Testimonials = () => {
                                 value={review.rating}
                                 readOnly
                             />
+                            <div className="m-6">
+                                <FaQuoteLeft className="text-9xl"></FaQuoteLeft>
+                            </div>
                             {/* rating end */}
-                            <p className="py-8">
+                            <p className="py-8 text-center">
                                 {review.details}
                             </p>
                             <h3 className="text-2xl text-orange-400">
