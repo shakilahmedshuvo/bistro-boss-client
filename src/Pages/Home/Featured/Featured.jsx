@@ -24,7 +24,7 @@ const Featured = () => {
                         <p>
                             Lorem ipsum dolor sit amen consectetur adipisicing elite. Error voluptuary facer, destruct dolores maia.res quod nobs quash quasi. Eacute repellant recusance ad laudanum tempore consecrator consequently omnios ulema maxima tenter.
                         </p>
-                        <button className="btn btn-outline border-white border-2 text-white hover:bg-white hover:text-black hover:border-0">
+                        <button className="btn btn-outline border-0 border-b-4 mt-4">
                             Order Now
                         </button>
                     </div>
