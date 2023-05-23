@@ -26,16 +26,23 @@ const Testimonials = () => {
                 heading={"Testimonials"}
                 subHeading={"What Our Client Say"}
             ></SectionTitle>
-            <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+            <Swiper
+                navigation={true}
+                modules={[Navigation]}
+                className="mySwiper">
                 {/* map and show the card section */}
                 {
                     reviews.map(review => <SwiperSlide
                         key={review._id}
                     >
-                        <div className="my-16 mx-24 flex flex-col items-center font-bold">
+                        <div
+                            className="my-16 mx-24 flex flex-col items-center font-bold">
                             {/* rating start */}
                             <Rating
-                                style={{ maxWidth: 180 }}
+                                style=
+                                {
+                                    { maxWidth: 180 }
+                                }
                                 value={review.rating}
                                 readOnly
                             />
@@ -46,7 +53,7 @@ const Testimonials = () => {
                             <p className="py-8 text-center">
                                 {review.details}
                             </p>
-                            <h3 className="text-2xl text-orange-400">
+                            <h3 className="text-2xl text-orange-400 uppercase">
                                 {review.name}
                             </h3>
                         </div>
