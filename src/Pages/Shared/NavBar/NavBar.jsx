@@ -6,7 +6,7 @@ const NavBar = () => {
     const navOptions = <>
         <li>
             <Link to="/">
-               Home
+                Home
             </Link>
         </li>
 
@@ -17,9 +17,9 @@ const NavBar = () => {
         </li>
 
         <li>
-            <a>
-                Item 3
-            </a>
+            <Link to="order">
+                Order Food
+            </Link>
         </li>
     </>
 
