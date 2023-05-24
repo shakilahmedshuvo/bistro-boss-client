@@ -12,7 +12,7 @@ const MenuCategory = ({ items, title, img }) => {
                     title={title}
                 ></Cover>
             }
-            <div className="grid md:grid-cols-2 font-bold gap-10 mt-16">
+            <div className="grid md:grid-cols-2 font-bold gap-10 my-16 max-w-6xl mx-auto">
                 {/* show the card and the map section and output in the menu category */}
                 {
                     items.map(item => <MenuItem
