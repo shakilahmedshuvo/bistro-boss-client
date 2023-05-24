@@ -1,5 +1,5 @@
-import SectionTitle from "../../Components/SectionTitle/SectionTitle";
-import saladeImg from "../../assets/home/slide5.jpg"
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
+import saladeImg from "../../../assets/home/slide5.jpg";
 
 const ChefRecommend = () => {
     return (

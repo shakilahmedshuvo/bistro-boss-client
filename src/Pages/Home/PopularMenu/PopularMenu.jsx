@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import SectionTitle from "../../Components/SectionTitle/SectionTitle";
-import MenuItem from "../Shared/MenuItem/MenuItem";
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
+import MenuItem from "../../Shared/MenuItem/MenuItem";
 
 const PopularMenu = () => {
     const [menu, setMenu] = useState([]);
+    
     // load the data from the json file
     useEffect(() => {
         fetch('menu.json')
@@ -16,7 +17,7 @@ const PopularMenu = () => {
     }, [])
     return (
         <section className="mb-12 max-w-5xl mx-auto">
-            <SectionTitle
+            <SectionTitle   
                 heading="From Our Menu"
                 subHeading="Popular Items"
             ></SectionTitle>
