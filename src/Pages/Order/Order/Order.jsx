@@ -7,6 +7,7 @@ import 'react-tabs/style/react-tabs.css';
 import useMenu from "../../../hooks/useMenu";
 import OrderTab from "../OrderTab/OrderTab";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Order = () => {
     //    get the initialIndex of
@@ -25,67 +26,74 @@ const Order = () => {
 
     return (
         <div className="font-bold">
+            {/* use helmet */}
+            {/* using helmet async start */}
+            <Helmet>
+                <title>
+                    BISTRO BOSS | Order Food
+                </title>
+            </Helmet>
             <Cover
                 img={orderCoverImg}
                 title={"Order Food"}
             ></Cover>
             {/* tab section */}
             <div className="max-w-6xl mx-auto">
-            <Tabs
-                defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-                <TabList>
-                    <Tab>
-                        Salad
-                    </Tab>
+                <Tabs
+                    defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
+                    <TabList>
+                        <Tab>
+                            Salad
+                        </Tab>
 
-                    <Tab>
-                        Pizza
-                    </Tab>
+                        <Tab>
+                            Pizza
+                        </Tab>
 
-                    <Tab>
-                        Soup
-                    </Tab>
+                        <Tab>
+                            Soup
+                        </Tab>
 
-                    <Tab>
-                        Dessert
-                    </Tab>
+                        <Tab>
+                            Dessert
+                        </Tab>
 
-                    <Tab>
-                        Drinks
-                    </Tab>
+                        <Tab>
+                            Drinks
+                        </Tab>
 
-                </TabList>
-                {/* tab body section */}
-                <TabPanel>
-                    <OrderTab
-                        items={salad}
-                    ></OrderTab>
-                </TabPanel>
+                    </TabList>
+                    {/* tab body section */}
+                    <TabPanel>
+                        <OrderTab
+                            items={salad}
+                        ></OrderTab>
+                    </TabPanel>
 
-                <TabPanel>
-                    <OrderTab
-                        items={pizza}
-                    ></OrderTab>
-                </TabPanel>
+                    <TabPanel>
+                        <OrderTab
+                            items={pizza}
+                        ></OrderTab>
+                    </TabPanel>
 
-                <TabPanel>
-                    <OrderTab
-                        items={soup}
-                    ></OrderTab>
-                </TabPanel>
+                    <TabPanel>
+                        <OrderTab
+                            items={soup}
+                        ></OrderTab>
+                    </TabPanel>
 
-                <TabPanel>
-                    <OrderTab
-                        items={desserts}
-                    ></OrderTab>
-                </TabPanel>
+                    <TabPanel>
+                        <OrderTab
+                            items={desserts}
+                        ></OrderTab>
+                    </TabPanel>
 
-                <TabPanel>
-                    <OrderTab
-                        items={drinks}
-                    ></OrderTab>
-                </TabPanel>
-            </Tabs>
+                    <TabPanel>
+                        <OrderTab
+                            items={drinks}
+                        ></OrderTab>
+                    </TabPanel>
+                </Tabs>
             </div>
         </div >
     );
