@@ -9,11 +9,12 @@ import OrderTab from "../OrderTab/OrderTab";
 import { useParams } from "react-router-dom";
 
 const Order = () => {
-    const [tabIndex, setTabIndex] = useState(0);
-    // load the data
-    const [menu] = useMenu();
-
+    //    get the initialIndex of
+    const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks'];
     const { category } = useParams();
+    const initialIndex = categories.indexOf(category);
+    const [tabIndex, setTabIndex] = useState(initialIndex);
+    const [menu] = useMenu();
 
     // get the value for each sections
     const desserts = menu.filter(item => item.category === "dessert");
@@ -30,62 +31,61 @@ const Order = () => {
             ></Cover>
             {/* tab section */}
             <div className="max-w-6xl mx-auto">
-                <Tabs
-                    defaultIndex={tabIndex}
-                    onSelect={(index) => setTabIndex(index)}>
-                    <div className="mx-auto text-center mt-10">
-                        <TabList>
-                            <Tab>
-                                SALAD
-                            </Tab>
+            <Tabs
+                defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
+                <TabList>
+                    <Tab>
+                        Salad
+                    </Tab>
 
-                            <Tab>PIZZA
-                            </Tab>
+                    <Tab>
+                        Pizza
+                    </Tab>
 
-                            <Tab>
-                                SOUPS
-                            </Tab>
+                    <Tab>
+                        Soup
+                    </Tab>
 
-                            <Tab>
-                                DESSERTS
-                            </Tab>
+                    <Tab>
+                        Dessert
+                    </Tab>
 
-                            <Tab>DRINKS
-                            </Tab>
+                    <Tab>
+                        Drinks
+                    </Tab>
 
-                        </TabList>
-                    </div>
-                    {/* tab body section */}
-                    <TabPanel>
-                        <OrderTab
-                            items={salad}
-                        ></OrderTab>
-                    </TabPanel>
+                </TabList>
+                {/* tab body section */}
+                <TabPanel>
+                    <OrderTab
+                        items={salad}
+                    ></OrderTab>
+                </TabPanel>
 
-                    <TabPanel>
-                        <OrderTab
-                            items={pizza}
-                        ></OrderTab>
-                    </TabPanel>
+                <TabPanel>
+                    <OrderTab
+                        items={pizza}
+                    ></OrderTab>
+                </TabPanel>
 
-                    <TabPanel>
-                        <OrderTab
-                            items={soup}
-                        ></OrderTab>
-                    </TabPanel>
+                <TabPanel>
+                    <OrderTab
+                        items={soup}
+                    ></OrderTab>
+                </TabPanel>
 
-                    <TabPanel>
-                        <OrderTab
-                            items={desserts}
-                        ></OrderTab>
-                    </TabPanel>
+                <TabPanel>
+                    <OrderTab
+                        items={desserts}
+                    ></OrderTab>
+                </TabPanel>
 
-                    <TabPanel>
-                        <OrderTab
-                            items={drinks}
-                        ></OrderTab>
-                    </TabPanel>
-                </Tabs>
+                <TabPanel>
+                    <OrderTab
+                        items={drinks}
+                    ></OrderTab>
+                </TabPanel>
+            </Tabs>
             </div>
         </div >
     );
