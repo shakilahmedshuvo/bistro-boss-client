@@ -6,8 +6,8 @@ const Main = () => {
     // login page without header and footer
     const location = useLocation();
     // console.log(location);
-    const noHeaderFooter = location.pathname.includes('login')
-
+    // condition rendering function
+    const noHeaderFooter = location.pathname.includes('login') || location.pathname.includes('signUp');
     return (
         <div>
             {/* use condition rendering for login page no header footer */}

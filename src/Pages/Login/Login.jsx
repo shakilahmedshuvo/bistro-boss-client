@@ -1,6 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { AuthContext } from '../../Providers/AuthProvider';
+import { Link } from 'react-router-dom';
 const Login = () => {
+    const { signIn } = useContext(AuthContext);
+
     // handle login function
     const handleLogin = event => {
         event.preventDefault();
@@ -8,7 +12,14 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+        // login page sign in function
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
     }
+
     // captcha
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -25,6 +36,7 @@ const Login = () => {
             setDisabled(true);
         }
     }
+
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col md:flex-row-reverse">
@@ -83,6 +95,12 @@ const Login = () => {
                             />
                         </div>
                     </form>
+                    <p>
+                        <small>
+                            New Here? <Link to="/signUp">Create an Account</Link>
+                        </small>
+                    </p>
+
                 </div>
             </div>
         </div>
