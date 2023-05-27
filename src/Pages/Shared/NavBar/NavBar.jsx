@@ -1,6 +1,18 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const NavBar = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    // handleLogOut function
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+
+            })
+            .catch(error => console.log(error));
+    }
 
     // nav bar function
     const navOptions = <>
@@ -21,12 +33,28 @@ const NavBar = () => {
                 Order Food
             </Link>
         </li>
-
-        <li>
-            <Link to="login">
-                Login
-            </Link>
-        </li>
+        {/* conditional rendering */}
+        {
+            user ?
+                <>
+                    <span className="flex justify-center items-center">
+                        {user?.displayName}
+                    </span>
+                    <li>
+                        <Link onClick={handleLogOut} className="btn btn-ghost">
+                            Log Out
+                        </Link>
+                    </li>
+                </>
+                :
+                <>
+                    <li>
+                        <Link className="btn btn-ghost" to="login">
+                            Log In
+                        </Link>
+                    </li>
+                </>
+        }
     </>
 
     return (
