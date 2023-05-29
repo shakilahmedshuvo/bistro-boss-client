@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import useCart from "../../../hooks/useCart";
+import { FaTrashAlt } from 'react-icons/fa';
 
 const MyCart = () => {
     const [cart] = useCart();
@@ -64,18 +65,15 @@ const MyCart = () => {
                                     </div>
                                 </td>
                                 <td>
-                                    Zemlak, Daniel and Leannon
-                                    <br />
-                                    <span className="badge badge-ghost badge-sm">
-                                        Desktop Support Technician
-                                    </span>
+                                    {item.name}
+                                </td>
+                                <td className="text-end">
+                                    ${item.price}
                                 </td>
                                 <td>
-                                    Purple
-                                </td>
-                                <td>
-                                    <button className="btn btn-ghost btn-xs">
-                                        details
+                                    <button
+                                    className="btn btn-ghost btn-lg bg-red-600">
+                                        <FaTrashAlt className="text-white"></FaTrashAlt>
                                     </button>
                                 </td>
                             </tr>)
