@@ -33,7 +33,7 @@ const FoodCard = ({ item }) => {
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Login Now'
+                confirmButtonText: 'Login Now!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     navigate('/login')
