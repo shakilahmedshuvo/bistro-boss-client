@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const Login = () => {
     const { signIn } = useContext(AuthContext);
@@ -32,7 +32,7 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate(form, { replace: true });
+                navigate(from, { replace: true });
             })
     }
 
@@ -102,7 +102,9 @@ const Login = () => {
                             {/* submit btn */}
                             <div className="form-control mt-6">
                                 <input
-                                    disabled={disabled}
+                                    // TODO: make btn disable for captcha
+                                    // disabled={disabled}
+                                    disabled={false}
                                     className="btn btn-primary"
                                     type="submit"
                                     value="Login"
