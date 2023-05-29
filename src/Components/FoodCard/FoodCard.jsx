@@ -2,11 +2,13 @@ import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
+import useCart from "../../hooks/useCart";
 
 // TODO: implement pagination here on this page
 const FoodCard = ({ item }) => {
     const { name, image, price, recipe, _id } = item;
     const { user } = useContext(AuthContext);
+    const [, refetch] = useCart();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -23,6 +25,8 @@ const FoodCard = ({ item }) => {
             })
                 .then(res => res.json())
                 .then(data => {
+                    // refetch the cart update the number of items in the cart
+                    refetch();
                     if (data.insertedId) {
                         Swal.fire({
                             position: 'top-center',
