@@ -125,7 +125,7 @@ const Login = () => {
                                 />
                             </div>
                         </form>
-                        <p>
+                        <p className='text-center'>
                             <small>
                                 New Here? <Link
                                     to="/signUp">
