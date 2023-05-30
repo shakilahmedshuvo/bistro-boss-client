@@ -10,26 +10,43 @@ const SignUp = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
 
+    // onsubmit
     const onSubmit = data => {
-        console.log(data);
+        // console.log(data);
+
         createUser(data.email, data.password)
             .then(result => {
+
                 const loggedUser = result.user;
                 // console.log(loggedUser);
+
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        console.log('user profile info updated')
-                        reset();
-                        Swal.fire({
-                            position: 'top-center',
-                            icon: 'success',
-                            title: 'User created successfully.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        navigate('/');
-                        // logOut();
 
+                        const savedUser = { name: data.name, email: data.email }
+
+                        fetch('http://localhost:5000/users', {
+                            method: "POST",
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(savedUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    reset();
+                                    Swal.fire({
+                                        position: 'top-center',
+                                        icon: 'success',
+                                        title: 'User created successfully.',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    navigate('/');
+                                    // logOut();
+                                }
+                            })
                     })
                     .catch(error => console.log(error))
             })
@@ -45,10 +62,10 @@ const SignUp = () => {
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
                         <h1 className="text-5xl font-bold">
-                            Sign up now!
+                            Sign up now !
                         </h1>
                         <p className="py-6">
-                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+                            Provident cuspidate voluptatem et in. Quadrat fugit ut assumed excepting exercitation quasi. In delegati eacute aut repudiate et a id nisi.
                         </p>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -76,7 +93,7 @@ const SignUp = () => {
                                     errors.name &&
                                     <span
                                         className="text-red-600">
-                                        Name is required !
+                                        Name is Required !
                                     </span>
                                 }
                             </div>
@@ -118,7 +135,7 @@ const SignUp = () => {
                                 {
                                     errors.email &&
                                     <span className="text-red-600">
-                                        Email is required !
+                                        Email is Required !
                                     </span>
                                 }
                             </div>
@@ -142,28 +159,32 @@ const SignUp = () => {
                                     placeholder="Enter Your Password"
                                     className="input input-bordered" />
                                 {
-                                    errors.password?.type === 'required' &&
+                                    errors.password?.type === 'required'
+                                    &&
                                     <p
                                         className="text-red-600">
                                         Password is Required !
                                     </p>
                                 }
                                 {
-                                    errors.password?.type === 'minLength' &&
+                                    errors.password?.type === 'minLength'
+                                    &&
                                     <p
                                         className="text-red-600">
                                         Password Must be 6 Characters !
                                     </p>
                                 }
                                 {
-                                    errors.password?.type === 'maxLength' &&
+                                    errors.password?.type === 'maxLength'
+                                    &&
                                     <p
                                         className="text-red-600">
                                         Password Must be Less Than 20 Characters !
                                     </p>
                                 }
                                 {
-                                    errors.password?.type === 'pattern' &&
+                                    errors.password?.type === 'pattern'
+                                    &&
                                     <p
                                         className="text-red-600">
                                         Password Must Have One Uppercase One Lower Case, One Number & One Special Character !
