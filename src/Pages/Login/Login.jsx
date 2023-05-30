@@ -4,14 +4,15 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Providers/AuthProvider';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
+// handleLogin
 const Login = () => {
     const { signIn } = useContext(AuthContext);
-    // privet routes
+    // redirect the user
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
-
 
     // handle login function
     const handleLogin = event => {
@@ -19,12 +20,13 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+        // console.log(email, password);
+
         // login page sign in function
         signIn(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                 Swal.fire({
                     position: 'top-center',
                     icon: 'success',
@@ -40,6 +42,7 @@ const Login = () => {
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, [])
+
     const [disabled, setDisabled] = useState(true);
     const handleValidateCaptcha = (event) => {
         const user_captcha_value = event.target.value;
@@ -51,11 +54,10 @@ const Login = () => {
             setDisabled(true);
         }
     }
-
     return (
         <>
             <Helmet>
-                <title>Bistro | Login</title>
+                <title>Bistro Boss | Login</title>
             </Helmet>
             <div className="hero min-h-screen font-bold bg-base-200">
                 <div className="hero-content flex-col md:flex-row-reverse">
@@ -64,7 +66,7 @@ const Login = () => {
                             Login now!
                         </h1>
                         <p className="py-6">
-                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+                            Provident cuspidate voluptatem et in. Quadrat fugit ut assumed excepting exercitation quasi. In delegati eacute aut repudiate et a id nisi.
                         </p>
                     </div>
                     <div className="card md:w-1/2 max-w-sm shadow-2xl bg-base-100">
@@ -77,17 +79,25 @@ const Login = () => {
                                         Email
                                     </span>
                                 </label>
-                                <input type="email" name="email" placeholder="Enter Your Email" className="input input-bordered" />
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="Enter Your Email"
+                                    className="input input-bordered" />
                             </div>
+
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">
                                         Password
                                     </span>
                                 </label>
-                                <input type="password" name="password" placeholder="Enter Your Password" className="input input-bordered" />
+                                <input
+                                    type="password"
+                                    name="password"
+                                    placeholder="Enter Your Password" className="input input-bordered" />
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">
+                                    <a className="label-text-alt link link-hover">
                                         Forgot password?
                                     </a>
                                 </label>
@@ -97,7 +107,11 @@ const Login = () => {
                                 <label className="label">
                                     <LoadCanvasTemplate />
                                 </label>
-                                <input onBlur={handleValidateCaptcha} type="text" name="captcha" placeholder="Type The Text Above" className="input input-bordered" />
+                                <input
+                                    onBlur={handleValidateCaptcha}
+                                    type="text"
+                                    name="captcha"
+                                    placeholder="Type The Text Above" className="input input-bordered" />
                             </div>
                             {/* submit btn */}
                             <div className="form-control mt-6">
@@ -113,10 +127,13 @@ const Login = () => {
                         </form>
                         <p>
                             <small>
-                                New Here? <Link to="/signUp">Create an Account</Link>
+                                New Here? <Link
+                                    to="/signUp">
+                                    Create an Account
+                                </Link>
                             </small>
                         </p>
-
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>
