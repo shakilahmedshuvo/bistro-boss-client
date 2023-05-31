@@ -1,12 +1,35 @@
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import { FaTrashAlt, FaUserShield } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
     const { data: users = [], refetch } = useQuery(['users'], async () => {
         const res = await fetch('http://localhost:5000/users')
         return res.json();
     })
+
+    // handleMakeAdmin eventHandler
+    const handleMakeAdmin = user => {
+        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+            method: 'PATCH'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    refetch();
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: `${user.name} is an Admin Now !`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+    }
+
 
     // handleDelete eventHandler
     const handleDelete = user => {
@@ -61,10 +84,13 @@ const AllUsers = () => {
                                 </td>
                                 <td>
                                     {
-                                        user.role === 'admin' ? 'admin'
+                                        user.role === 'admin' ? 'Admin'
                                             :
                                             <button
-                                                onClick={() => handleDelete(user)}
+                                                onClick=
+                                                {
+                                                    () => handleMakeAdmin(user)
+                                                }
                                                 className="btn btn-ghost bg-orange-400 text-white">
                                                 <FaUserShield />
                                             </button>
@@ -72,14 +98,16 @@ const AllUsers = () => {
                                 </td>
                                 <td>
                                     <button
-                                        onClick={() => handleDelete(user)}
+                                        onClick=
+                                        {
+                                            () => handleDelete(user)
+                                        }
                                         className="btn btn-ghost bg-red-500">
                                         <FaTrashAlt className="text-white" />
                                     </button>
                                 </td>
                             </tr>)
                         }
-
                     </tbody>
                 </table>
             </div>
