@@ -38,7 +38,7 @@ const Order = () => {
                 title={"Order Food"}
             ></Cover>
             {/* tab section */}
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-6xl text-center mx-auto">
                 <Tabs
                     defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                     <TabList>
