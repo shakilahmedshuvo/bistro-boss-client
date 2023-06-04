@@ -30,7 +30,6 @@ const AllUsers = () => {
             })
     }
 
-
     // handleDelete eventHandler
     const handleDelete = user => {
 
