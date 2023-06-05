@@ -3,13 +3,13 @@ import { FaShoppingCart, FaWallet, FaCalendarAlt, FaHome, FaUtensils, FaUsers } 
 import { TiThMenu, TiShoppingCart } from 'react-icons/Ti';
 import useCart from "../hooks/useCart";
 import useAdmin from "../hooks/useAdmin";
+import useAuth from "../hooks/useAuth";
 const Dashboard = () => {
     const [cart] = useCart();
 
     // TODO: load data from the server to have dynamic isAdmin based on Data
     // const isAdmin = true;
     const [isAdmin] = useAdmin();
-    
     return (
         <div className="drawer drawer-mobile">
             <input
@@ -36,15 +36,15 @@ const Dashboard = () => {
                     {
                         isAdmin ?
                             <>
-                                {/* admin panel section start */}
+                                {/* admin panel section start only admin access this section */}
                                 <li>
                                     <NavLink>
                                         <FaHome></FaHome> Admin Home
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink>
-                                        <FaUtensils></FaUtensils> Add Items
+                                    <NavLink to="addItem">
+                                        <FaUtensils></FaUtensils> Add An Item
                                     </NavLink>
                                 </li>
                                 <li>
