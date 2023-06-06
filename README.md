@@ -1,4 +1,5 @@
-* This is BISTRO BOSS RESTRAINT website
+* TODO: ( 79-7 and the server site also )
+* This is BISTRO BOSS RESTRAINT Website
 * REACT ROUTER
 * TAILWIND
 * DAISY UI

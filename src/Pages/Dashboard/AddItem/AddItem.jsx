@@ -30,7 +30,6 @@ const AddItem = () => {
                     console.log(newItem);
                 }
             })
-
         console.log(data);
     };
     console.log(errors);
